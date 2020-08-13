@@ -92,9 +92,13 @@ public class MainController extends HttpServlet {
 					
 				
 				if(usertype.equals("user")){
-					request.getRequestDispatcher("SZHome.jsp").forward(request, response);
+					ArrayList<WorkspaceVo>list=service.getWorkspaceList();
+					request.setAttribute("wospacelist", list);
+					request.getRequestDispatcher("user.jsp").forward(request, response);
 				}
 				else if(usertype.equals("manager")){
+					ArrayList<WorkspaceDetailsBean>list=service.getWorkspaceListForManager(sess.getId());
+					request.setAttribute("man", list);
 					request.getRequestDispatcher("manager.jsp").forward(request, response);
 				}
 				else if(usertype.equals("admin")){
@@ -155,6 +159,12 @@ public class MainController extends HttpServlet {
 					request.getRequestDispatcher("admincreate.jsp").forward(request, response);
 					
 					
+				}
+				else if(actionFinder.equals("showmanagers")){
+					
+					ArrayList<SignUpBean>list=service.getManagers();
+					request.setAttribute("managers", list);
+					request.getRequestDispatcher("managers.jsp").forward(request,response);
 				}
 			}
 			}

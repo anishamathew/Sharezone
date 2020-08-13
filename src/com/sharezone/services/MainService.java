@@ -37,6 +37,16 @@ public interface MainService {
 
 
 
+	ArrayList<SignUpBean> getManagers();
+
+
+
+
+	ArrayList<WorkspaceDetailsBean> getWorkspaceListForManager(Integer id);
+
+
+
+
 	
 
 

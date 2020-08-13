@@ -1,3 +1,5 @@
+<%@page import="com.sharezone.vo.WorkspaceVo"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 <head>
     <title>User Page</title>
@@ -57,10 +59,15 @@
             margin-top: 200;
             color: white;
         }
+        #j
+        {
+        margin-top:500;
+        }
     
         </style>
     </head> 
     <body>
+    <% ArrayList <WorkspaceVo> list=(ArrayList)request.getAttribute("wospacelist"); %>
     <div id="a">
         
         <img id="b" src="images/coworking9.jpg">
@@ -80,5 +87,25 @@
         <div id="h">
             <h1 id="i"> Connect. Collaborate. Grow </h1>
         </div>
+        <table id="j">
+        <tr>
+        <th>sl.no</th>
+        <th>workspacename</th>
+        <th>location</th>
+        <th>totalchairs</th>
+        <th>description</th>
+        <th>facilities</th>
+        </tr>
+        <% for(int i=0;i<list.size();i++)
+        { %>
+        <tr>
+        <td><%=i+1%></td>
+        <td><%=list.get(i).getWorkspaceName()%></td>
+        <td><%=list.get(i).getLocation()%></td>
+        <td><%=list.get(i).getTotalChairs() %></td>
+        <td><%=list.get(i).getDescription() %></td>
+        <td><%=list.get(i).getFacilities()%></td>
+        <%} %>
+        </table>
     </body>
 </html>

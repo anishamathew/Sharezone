@@ -1,4 +1,5 @@
-<%@page import="com.sharezone.vo.WorkspaceVo" %>
+
+<%@page import="com.sharezone.bean.SignUpBean"%>
 <%@page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -64,7 +65,7 @@
         a{text-decoration:none;position:absolute;color: white;margin-left: 50;}
         #j
         {
-         text-decoration:none;position:absolute;color:white;margin-left: 80;font-size:18;margin-top:5; background:transparent;border:none;  
+         text-decoration:none;position:absolute;color: white;margin-left: 80;font-size:18;margin-top:5; background:transparent;border:none;  
         }
         #k
         {
@@ -86,7 +87,8 @@
     </head> 
     <body>
     
-    <% ArrayList <WorkspaceVo> list=(ArrayList)request.getAttribute("wslist"); %>
+    <% ArrayList <SignUpBean> list=(ArrayList)request.getAttribute("managers"); %>
+    
    
     <div id="a">
         
@@ -97,40 +99,35 @@
 <h4 id="f">Logout</h4>
         </div>
         
-     
+        
 <ul id="g" type="none">
-<form action="MainController" method="post">
     <button id="m" value="wsn">Workspace</button> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <button id="j" name="actionFinder" value="showmanagers" >Managers</button>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-    </form>
+    <button id="j" value="showmanagers">Managers</button>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
     <a id="k" href="login.html">Reviews</a> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
     <a id="l" href="admininfo.html">Info</a>
-    
             </ul>
         
         <div id="h">
             <h1 id="i"> Connect. Collaborate. Grow </h1>
         </div>
         <div id="o">
-        <form action="MainController" method="post">
-        <button type="submit" name="actionFinder" value="Addworkspace" >Add Workspace </button>
         
-        </form>
         </div>
         <table>
         <tr>
         <th>sl.no</th>
-        <th>workspacename</th>
-        <th>location</th>
-        <th>manager</th>
+        <th>name</th>
+        <th>email</th>
+        <th>password</th>
         </tr>
         <% for(int i=0;i<list.size();i++)
         { %>
         <tr>
         <td><%=i+1%></td>
-        <td><%=list.get(i).getWorkspaceName()%></td>
-        <td><%=list.get(i).getLocation() %></td>
-        <td><%=list.get(i).getFirstName() %><%=list.get(i).getLastName() %></td>
+      
+        <td><%=list.get(i).getFirstname() %><%=list.get(i).getLastname() %></td>
+        <td><%=list.get(i).getEmail()%></td>
+        <td><%=list.get(i).getPassword() %></td>
         <%} %>
         </table>
     </body>

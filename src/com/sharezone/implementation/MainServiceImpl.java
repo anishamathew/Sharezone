@@ -110,6 +110,9 @@ try{
 			obj.setId(Integer.valueOf(RS.getString("workspacedetails.id")));
 			obj.setWorkspaceName(RS.getString("workspacedetails.workspacename"));
 			obj.setLocation(RS.getString("workspacedetails.location"));
+			obj.setTotalChairs(Integer.valueOf(RS.getString("workspacedetails.totalchairs")));
+			obj.setDescription(RS.getString("workspacedetails.description"));
+			obj.setFacilities(RS.getString("workspacedetails.facilities"));
 			obj.setFirstName(RS.getString("signup.Firstname"));
 			obj.setLastName(RS.getString("signup.Lastname"));
 			list.add(obj);
@@ -140,6 +143,61 @@ try{
 			list.add(obj);
 		}
 		return list;
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+		return list;
+	}
+	@Override
+	public ArrayList<SignUpBean> getManagers() {
+		ArrayList <SignUpBean> list=new ArrayList();
+		try{
+			query="select * from signup where UserType='manager'";
+			PS=con.prepareStatement(query);
+			ResultSet RS=PS.executeQuery();
+			
+			while(RS.next()){
+				
+				SignUpBean obj=new SignUpBean();
+				obj.setId(Integer.valueOf(RS.getString("id")));
+				obj.setFirstname(RS.getString("Firstname"));
+				obj.setLastname(RS.getString("Lastname"));
+				obj.setEmail(RS.getString("Email"));
+				obj.setPassword(RS.getString("Password"));
+				list.add(obj);			
+				}
+			return list;
+		}
+		catch(Exception e){
+			
+			System.out.println(e);
+			
+			
+		}
+		return list;
+	}
+	@Override
+	public ArrayList<WorkspaceDetailsBean> getWorkspaceListForManager(Integer id) {
+		ArrayList<WorkspaceDetailsBean>list=new ArrayList();
+		try{
+			query="select * from workspacedetails where managerid=?";
+			PS=con.prepareStatement(query);
+			PS.setString(1,id.toString());
+ResultSet RS=PS.executeQuery();
+			
+			while(RS.next()){
+			WorkspaceDetailsBean obj=new WorkspaceDetailsBean();
+			obj.setId(Integer.valueOf(RS.getString("id")));
+			obj.setWorkspacename(RS.getString("workspacename"));
+			obj.setLocation(RS.getString("location"));
+			obj.setTotalchairs(Integer.valueOf(RS.getString("totalchairs")));
+			obj.setDescription(RS.getString("description"));
+			obj.setFacilities(RS.getString("facilities"));
+			list.add(obj);
+			}
+			return list;
+			
 		}
 		catch(Exception e){
 			System.out.println(e);
