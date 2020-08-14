@@ -6,6 +6,7 @@ public class OrderDetailsBean {
 	private Integer id;
 	private Integer userId;
 	private Integer workspaceId;
+	private Integer active;
 	public Integer getId() {
 		return id;
 	}
@@ -23,6 +24,12 @@ public class OrderDetailsBean {
 	}
 	public void setWorkspaceId(Integer workspaceId) {
 		this.workspaceId = workspaceId;
+	}
+	public Integer getActive() {
+		return active;
+	}
+	public void setActive(Integer active) {
+		this.active = active;
 	}
 	
 

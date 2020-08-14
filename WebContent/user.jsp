@@ -68,6 +68,7 @@
     </head> 
     <body>
     <% ArrayList <WorkspaceVo> list=(ArrayList)request.getAttribute("wospacelist"); %>
+    
     <div id="a">
         
         <img id="b" src="images/coworking9.jpg">
@@ -95,6 +96,7 @@
         <th>totalchairs</th>
         <th>description</th>
         <th>facilities</th>
+        <th>action</th>
         </tr>
         <% for(int i=0;i<list.size();i++)
         { %>
@@ -105,6 +107,12 @@
         <td><%=list.get(i).getTotalChairs() %></td>
         <td><%=list.get(i).getDescription() %></td>
         <td><%=list.get(i).getFacilities()%></td>
+        <td>
+        <form action="MainController" method="post">
+        <button type="submit" name="actionFinder" value="bookMySpace">Book</button>
+        <input type="hidden" name="workspaceFinder" value=<%=list.get(i).getId()%>>
+        </form>
+        </td>
         <%} %>
         </table>
     </body>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sharezone.bean.OrderDetailsBean;
 import com.sharezone.bean.SignUpBean;
 import com.sharezone.bean.WorkspaceDetailsBean;
 import com.sharezone.implementation.MainServiceImpl;
@@ -93,6 +94,7 @@ public class MainController extends HttpServlet {
 				
 				if(usertype.equals("user")){
 					ArrayList<WorkspaceVo>list=service.getWorkspaceList();
+					System.out.println(list.size());
 					request.setAttribute("wospacelist", list);
 					request.getRequestDispatcher("user.jsp").forward(request, response);
 				}
@@ -166,8 +168,17 @@ public class MainController extends HttpServlet {
 					request.setAttribute("managers", list);
 					request.getRequestDispatcher("managers.jsp").forward(request,response);
 				}
+				else if(actionFinder.equals("bookMySpace")){
+		String workspaceId=request.getParameter("workspaceFinder");
+		Integer userId=(Integer)sessions.getAttribute("userid");
+		OrderDetailsBean obj=new OrderDetailsBean();
+		obj.setUserId(userId);
+		obj.setWorkspaceId(Integer.valueOf(workspaceId));
+		obj.setActive(1);
+		String setOrder=service.setOrder(obj);
 			}
 			}
+}
 
 			
 			

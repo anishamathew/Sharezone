@@ -1,10 +1,12 @@
 package com.sharezone.implementation;
 
+import java.nio.file.attribute.UserPrincipalLookupService;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.sharezone.bean.OrderDetailsBean;
 import com.sharezone.bean.SignUpBean;
 import com.sharezone.bean.WorkspaceDetailsBean;
 import com.sharezone.jdbc.JdbcProperties;
@@ -203,6 +205,27 @@ ResultSet RS=PS.executeQuery();
 			System.out.println(e);
 		}
 		return list;
+	}
+	@Override
+	public String setOrder(OrderDetailsBean obj) {
+		try{
+			query="insert into orderdetails(userId,workspaceId,active)values(?,?,?)";
+			PS=con.prepareStatement(query);
+			PS.setLong(1, obj.getUserId());
+			PS.setLong(2, obj.getWorkspaceId());
+			PS.setLong(3, obj.getActive());
+int resp=PS.executeUpdate();
+			
+			if(resp!=0){
+				return "Success";
+			}
+			
+		}
+		catch(Exception e){
+			
+			System.out.println(e);
+		}
+		return "failed";
 	}
 	
 	

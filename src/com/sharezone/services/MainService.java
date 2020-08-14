@@ -2,6 +2,7 @@ package com.sharezone.services;
 
 import java.util.ArrayList;
 
+import com.sharezone.bean.OrderDetailsBean;
 import com.sharezone.bean.SignUpBean;
 import com.sharezone.bean.WorkspaceDetailsBean;
 
@@ -43,6 +44,11 @@ public interface MainService {
 
 
 	ArrayList<WorkspaceDetailsBean> getWorkspaceListForManager(Integer id);
+
+
+
+
+	String setOrder(OrderDetailsBean obj);
 
 
 
