@@ -19,6 +19,8 @@ public class WorkspaceVo {
 	private String email;
 	private String signUpPassword;
 	private String userType;
+	
+	private String rating;
 	public int getId() {
 		return id;
 	}
@@ -115,4 +117,12 @@ public class WorkspaceVo {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public String getRating() {
+		return rating;
+	}
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
+	
+	
 }

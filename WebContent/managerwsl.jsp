@@ -1,5 +1,7 @@
-<%@page import="com.sharezone.bean.WorkspaceDetailsBean"%>
+<%@page import="com.sharezone.vo.OrderDetailsVo"%>
 <%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <html>
 <head>
     <title>Manager Page</title>
@@ -39,10 +41,8 @@
           margin-top:10;
             position:absolute;
             color:black;
-            
         }
         
-       
         #i
         {
             font-size: 50;
@@ -53,22 +53,15 @@
         }
         #j
         {
-       color:white;
+         color:white;
         position:absolute;
-        margin-left:400;
-        
-        }
-        #k
-        {
-         margin-top:500;
-         position:absolute;
-         margin-left:600;
+        margin-left:300;
         }
     
         </style>
     </head> 
     <body>
-     <% ArrayList <WorkspaceDetailsBean> list=(ArrayList)request.getAttribute("man"); %>
+     <% ArrayList <OrderDetailsVo> list=(ArrayList)request.getAttribute("req"); %>
     <div id="a">
         
         <img id="b" src="images/coworking7.jpg">
@@ -78,10 +71,7 @@
 <a id="f" href="login.jsp">Logout</a>
         </div>
         
-
-            <form action="MainController" method="post">
-            <button id="k" type="submit" value="newreq" name="actionFinder">NewRequests</button>
-            </form>
+            
             
         <div id="h">
             <h1 id="i"> Connect. Collaborate. Grow </h1>
@@ -94,7 +84,11 @@
         <th>TotalChairs</th>
         <th>Description</th>
         <th>Facilities</th>
-        <th>Action</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Gender</th>
+        <th>Userid</th>
+        <th>Workspaceid</th>
         </tr>
         <% for(int i=0;i<list.size();i++)
         { %>
@@ -105,12 +99,18 @@
         <td><%=list.get(i).getTotalchairs() %></td>
         <td><%=list.get(i).getDescription() %></td>
         <td><%=list.get(i).getFacilities()%></td>
+        <td><%=list.get(i).getEmail() %></td>
+        <td><%=list.get(i).getFirstname() %><%=list.get(i).getLastname() %></td>
+        <td><%=list.get(i).getGender() %></td>
+        <td><%=list.get(i).getUserId() %></td>
+        <td><%=list.get(i).getWorkspaceId() %></td>
         <td>
         <form action="MainController" method="post">
-        <button type="submit" name="actionFinder" value="expired">Expired</button>
-         <input type="hidden" name="ordersFinder" value=<%=list.get(i).getId() %>>
-         </td>
+        <button type="submit" name="actionFinder" value="approve">Approve</button>
+        <button type="submit" name="actionFinder" value="reject">Reject</button>
+        <input type="hidden" name="orderFinder" value=<%=list.get(i).getOrderDetailsId() %>>
         </form>
+        </td>
         <%} %>
         </table>
     </body>

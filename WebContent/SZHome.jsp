@@ -43,6 +43,7 @@
         #g li
         {
             display: inline;
+            margin-left:150;
         }
         #g
         {
@@ -390,7 +391,7 @@
             margin-top: 50;
             
         }
-        .oo
+        #pm
         {
             margin-top: 250;
             color: orangered;
@@ -586,7 +587,7 @@
             margin-top: 5;
             margin-left: 6;
         }
-        .p1
+        #pl
         {
             margin-left: 50;
             margin-top: 50;
@@ -657,6 +658,41 @@
           margin-left: 1050;
             margin-top: 100;
         }
+        #po
+        {
+        margin-top:35;
+        margin-left:-200;
+        position:absolute;
+        color:black;
+        }
+        #va
+        {
+         position:absolute;
+         margin-top:50;
+         margin-left:-200;
+         color:black;
+        }
+        #poo{
+        position:absolute;
+         margin-left:100;
+         color:white;
+        }
+        #goo{
+        position:absolute;
+        margin-left:-300;
+        color:white;
+        }
+        #aoo{
+        position:absolute;
+         margin-left:-100;
+         color:white;
+        }
+        #boo{
+        position:absolute;
+         margin-left:330;
+         color:white;
+        }
+        
     </style>
     </head> 
     <body>
@@ -667,15 +703,15 @@
         <div id="c">
         <img id="d" src="images/SZ%20Logo1.jpg">
         
-            <a href="login.jsp">  <h4 id="e"> Login </h4></a>
-            <a href="signup.jsp"> <h4 id="f"> SignUp </h4></a>
+            <a id="po" href="login.jsp">  <h4 id="e"> Login </h4></a>
+            <a id="va" href="signup.jsp"> <h4 id="f"> SignUp </h4></a>
         </div>
         <div>
 <ul id="g" type="none">
-          <li>Home</li> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <li>About</li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-    <li>Contact</li> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-    <li>Join Us</li>
+      <a id="goo" href="#top" ><li>Home</li> </a>
+    <a id="aoo" href="#k"><li>About</li></a>
+   <a  id="poo" href="#pl"><li>Contact</li></a> 
+   <a  id="boo" href="#pm"> <li>Plans</li></a>
             </ul>
         </div>
         <div id="h">
@@ -736,7 +772,7 @@
             <p class="y">ShareZone provides everything you need to get things done - blazing fast WiFi, abundant power outlets, bottomless snacks and beverages,food   -  and a whole lot more.</p>
         </div>
         <div class="z">
-        <img class="aa" src="images/coworking3.jpg">
+        <img class="aa" src="images/Coworking3.jpg">
             <h2 class="bb">Strength in Numbers</h2>
         <p class="cc">We encourage collaboration at our spaces so all members can benefit from the skills and expertise that others bring to the table. Work and connect in an inspiring environment surrounded by accomplished and like-minded professionals.</p>
         </div>
@@ -754,7 +790,7 @@
             <p class="mm">Renting a dedicated office space can be a daunting task for almost all small businesses, since it costs a robust amount of money. However, by going for a shared or co working office space, you can get a fully equipped office or individual workstation that come with all the facilities that you need to serve your purpose.</p>
         </div>
         <div class="nn">
-        <h1 class="oo"><center>SHAREZONE PLANS</center></h1>
+        <h1 id="pm"><center>SHAREZONE PLANS</center></h1>
         </div>
         <div class="pp">
        <h1 class="qq">Trial</h1>
@@ -809,7 +845,7 @@
         </div>
         <div class="n1">
         <img class="o1" src="images/SZ%20Logo1.jpg">
-            <h4 class="p1">MEMBERSHIP</h4>
+            <h4 id="pl">MEMBERSHIP</h4>
             <h4 class="q1">COMPANY</h4>
             <h4 class="r1">BECOME A SHAREZONE PARTNER</h4>
         </div>
@@ -835,10 +871,10 @@
             </ul>
          </div>
         <div class="v1">
-        <img class="w1" src="images/C:\Users\Jegan Bruso\Desktop\project\facebook.png">
-         <img class="x1" src="images/C:\Users\Jegan Bruso\Desktop\project\twitter.png">
-            <img class="y1" src="images/C:\Users\Jegan Bruso\Desktop\project\google-plus.png">
-            <img class="z1" src="images/C:\Users\Jegan Bruso\Desktop\project\linkedin.png">
+        <img class="w1" src="images/facebook.png">
+         <img class="x1" src="images/twitter.png">
+            <img class="y1" src="images/google-plus.png">
+            <img class="z1" src="images/linkedin.png">
         </div>
     </body>
 </html>  

@@ -31,26 +31,22 @@
             margin-top: 5;
             margin-left: 6;
         }
-        
-        
         #f
         {
-          margin-left: 1250;
-            margin-top: -25;
+          margin-left:1070;
+          margin-top:10;
+            position:absolute;
+            color:black;
         }
+        
+        
          #g li
         {
             
             display: inline;
             color: white;
         }
-        #g
-        {
-            margin-left: 650;
-            font-family: cursive;
-            font-size: 20;
-            color:white;
-        }
+        
         #i
         {
             font-size: 50;
@@ -61,7 +57,26 @@
         }
         #j
         {
-        margin-top:500;
+        margin-top:80;
+        margin-left:380;
+        color:white;
+        position:absolute;
+        
+        }
+        #k
+        {
+        margin-top:-10;
+        position:absolute;
+        }
+        #l
+        {
+         margin-top:-10;
+        position:absolute;
+        }
+        #m
+        {
+         margin-top:-10;
+        position:absolute;
         }
     
         </style>
@@ -75,28 +90,24 @@
         </div>
         <div id="c">
         <img id="d" src="images/SZ%20Logo1.jpg">
-<h4 id="f">Logout</h4>
+<a id="f" href="login.jsp">Logout</a>
         </div>
         
-<ul id="g" type="none">
-    <li>Workspaces</li> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <li>Reviews</li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-    <li>About Us</li> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-    <li>Profile</li>
-            </ul>
-        
+
         <div id="h">
             <h1 id="i"> Connect. Collaborate. Grow </h1>
         </div>
         <table id="j">
         <tr>
-        <th>sl.no</th>
-        <th>workspacename</th>
-        <th>location</th>
-        <th>totalchairs</th>
-        <th>description</th>
-        <th>facilities</th>
-        <th>action</th>
+        <th>Sl.no</th>
+        <th>Workspace Name</th>
+        <th>Location</th>
+        <th>Total Chairs</th>
+        <th>Description</th>
+        <th>Facilities</th>
+        <th>Action</th>
+        <th>Rate</th>
+        <th>Rating</th>
         </tr>
         <% for(int i=0;i<list.size();i++)
         { %>
@@ -107,12 +118,30 @@
         <td><%=list.get(i).getTotalChairs() %></td>
         <td><%=list.get(i).getDescription() %></td>
         <td><%=list.get(i).getFacilities()%></td>
+        
         <td>
         <form action="MainController" method="post">
-        <button type="submit" name="actionFinder" value="bookMySpace">Book</button>
+        <button  id="k" type="submit" name="actionFinder" value="bookMySpace">Book</button>
         <input type="hidden" name="workspaceFinder" value=<%=list.get(i).getId()%>>
         </form>
         </td>
+       
+        <td>
+        <form action="MainController" method="post">
+        <select id="m" name="rate">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        </select>
+        </td>
+        <td>
+        <button id="l" type="submit" name="actionFinder" value="rateme">Rate</button>
+         <input type="hidden" name="workspaceFinder" value=<%=list.get(i).getId()%>>
+        </td>
+        </form>
+         <td><%=list.get(i).getRating() %></td>
         <%} %>
         </table>
     </body>

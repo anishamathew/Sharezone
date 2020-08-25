@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sharezone.bean.OrderDetailsBean;
+import com.sharezone.bean.RatingBean;
 import com.sharezone.bean.SignUpBean;
 import com.sharezone.bean.WorkspaceDetailsBean;
 import com.sharezone.implementation.MainServiceImpl;
 import com.sharezone.services.MainService;
+import com.sharezone.vo.OrderDetailsVo;
 import com.sharezone.vo.WorkspaceVo;
 
 /**
@@ -177,6 +179,57 @@ public class MainController extends HttpServlet {
 		obj.setActive(1);
 		String setOrder=service.setOrder(obj);
 			}
+				else if(actionFinder.equals("newreq")){
+					Integer managerId=(Integer)sessions.getAttribute("userid");
+					ArrayList<OrderDetailsVo>list=service.getRequestList(managerId);
+                    System.out.println(list.size());
+					request.setAttribute("req", list);
+					request.getRequestDispatcher("managerwsl.jsp").forward(request, response);
+					
+				}
+				else if(actionFinder.equals("approve")){
+					String orderId=request.getParameter("orderFinder");
+				String approveRequest=service.setapproveRequest(orderId);	
+					
+				}
+				else if(actionFinder.equals("reject")){
+					
+					String orderId=request.getParameter("orderFinder");
+					String rejectRequest=service.setrejectRequest(orderId);
+				}
+				else if(actionFinder.equals("expired")){
+					
+					String ordersId=request.getParameter("ordersFinder");
+					String expire=service.setexpireRequest(ordersId);
+				}
+				else if(actionFinder.equals("rateme")){
+					
+					Integer userid=(Integer)sessions.getAttribute("userid");
+					String workspaceid=request.getParameter("workspaceFinder");
+					String rating=request.getParameter("rate");
+					System.out.println(userid + workspaceid  +rating);
+			        RatingBean obj=new RatingBean();
+					obj.setUserid(Integer.valueOf(userid));
+					obj.setWorkspaceid(Integer.valueOf(workspaceid));
+					obj.setRating(Integer.valueOf(rating));
+					String setrateMe=service.setrateMe(obj);
+					ArrayList<RatingBean>list=service.getAllReviews(workspaceid);
+					
+					float totalrating=0;
+					float avgrating=0;
+					for(int i=0;i<list.size();i++){
+						
+						totalrating=list.get(i).getRating()+totalrating;
+						avgrating=totalrating/list.size();
+						
+					}
+					
+					System.out.println(avgrating);
+					String updateRating=service.updateRating(workspaceid,avgrating);
+					request.getRequestDispatcher("admininfo.jsp").forward(request, response);
+					
+					}
+		
 			}
 }
 

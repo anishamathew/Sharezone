@@ -37,22 +37,12 @@
         
         #f
         {
-          margin-left: 1250;
-            margin-top: -25;
+         margin-left:1070;
+          margin-top:10;
+            position:absolute;
+            color:black;
         }
-         #g li
-        {
-            
-            display: inline;
-            color: white;
-        }
-        #g
-        {
-            margin-left: 760;
-            font-family: cursive;
-            font-size: 20;
-            color:white;
-        }
+         
         #i
         {
             font-size: 50;
@@ -64,7 +54,7 @@
         a{text-decoration:none;position:absolute;color: white;margin-left: 50;}
         #j
         {
-         text-decoration:none;position:absolute;color:white;margin-left: 80;font-size:18;margin-top:5; background:transparent;border:none;  
+         text-decoration:none;position:absolute;color:white;margin-left:1050;font-size:18;margin-top:22; background:transparent;border:none;  
         }
         #k
         {
@@ -72,15 +62,26 @@
         }
         #l
         {
-            text-decoration:none;position:absolute;color: white;margin-left: 180;
+            text-decoration:none;position:absolute;color: white;margin-left: 1250;margin-top:-10;font-size:20;
         }
         #m{
-        text-decoration:none;position:absolute;color: white;margin-left:30; margin-top:5;font-size:18; background:transparent;border:none; 
+        text-decoration:none;position:absolute;color: white;margin-left:30; margin-top:5;font-size:18; background:transparent;border:none; visibility:hidden;
         }
         #o
         {
         margin-left: 80;
         margin-top:300;
+        }
+        #p{
+        margin-left:500;
+        margin-top:-300;
+        color:white;
+        
+        }
+        #q{
+        margin-left:550;
+        margin-top:-150;
+        position:absolute;
         }
         </style>
     </head> 
@@ -94,35 +95,35 @@
         </div>
         <div id="c">
         <img id="d" src="images/SZ%20Logo1.jpg">
-<h4 id="f">Logout</h4>
+<a id="f" href="login.jsp">Logout</a>
         </div>
         
      
-<ul id="g" type="none">
+
 <form action="MainController" method="post">
-    <button id="m" value="wsn">Workspace</button> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <button id="m" value="wsn" >Workspace</button> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <button id="j" name="actionFinder" value="showmanagers" >Managers</button>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
     </form>
-    <a id="k" href="login.html">Reviews</a> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-    <a id="l" href="admininfo.html">Info</a>
+     <a id="l" href="admininfo.jsp">Info</a>
     
-            </ul>
+            
         
         <div id="h">
             <h1 id="i"> Connect. Collaborate. Grow </h1>
         </div>
         <div id="o">
         <form action="MainController" method="post">
-        <button type="submit" name="actionFinder" value="Addworkspace" >Add Workspace </button>
+        <button id="q" type="submit" name="actionFinder" value="Addworkspace" >Add Workspace </button>
         
         </form>
         </div>
-        <table>
+        <table id="p">
         <tr>
-        <th>sl.no</th>
-        <th>workspacename</th>
-        <th>location</th>
-        <th>manager</th>
+        <th>Sl.no</th>
+        <th>Workspacename</th>
+        <th>Location</th>
+        <th>Manager</th>
+        <th>Rating</th>
         </tr>
         <% for(int i=0;i<list.size();i++)
         { %>
@@ -131,6 +132,7 @@
         <td><%=list.get(i).getWorkspaceName()%></td>
         <td><%=list.get(i).getLocation() %></td>
         <td><%=list.get(i).getFirstName() %><%=list.get(i).getLastName() %></td>
+        <td><%=list.get(i).getRating() %></td>
         <%} %>
         </table>
     </body>

@@ -7,10 +7,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.sharezone.bean.OrderDetailsBean;
+import com.sharezone.bean.RatingBean;
 import com.sharezone.bean.SignUpBean;
 import com.sharezone.bean.WorkspaceDetailsBean;
 import com.sharezone.jdbc.JdbcProperties;
 import com.sharezone.services.MainService;
+import com.sharezone.vo.OrderDetailsVo;
 import com.sharezone.vo.WorkspaceVo;
 
 public class MainServiceImpl implements MainService {
@@ -117,6 +119,7 @@ try{
 			obj.setFacilities(RS.getString("workspacedetails.facilities"));
 			obj.setFirstName(RS.getString("signup.Firstname"));
 			obj.setLastName(RS.getString("signup.Lastname"));
+			obj.setRating(RS.getString("currentrating"));
 			list.add(obj);
 			
 		}
@@ -227,6 +230,170 @@ int resp=PS.executeUpdate();
 		}
 		return "failed";
 	}
+	@Override
+	public ArrayList<OrderDetailsVo> getRequestList(Integer managerId) {
+		
+		ArrayList<OrderDetailsVo>list=new ArrayList();
+		
+		try{
+			query="select * from orderdetails join"
+					+ " signup on orderdetails.userId=signup.id join "
+					+ "workspacedetails on orderdetails.workspaceId=workspacedetails.id where orderdetails.active=1 AND workspacedetails.managerId=?";
+			PS=con.prepareStatement(query);
+			PS.setString(1,String.valueOf(managerId));
+ResultSet RS=PS.executeQuery();
+			
+			while(RS.next()){
+			OrderDetailsVo obj=new OrderDetailsVo();
+			obj.setOrderDetailsId(Integer.valueOf(RS.getString("orderdetails.id")));
+			obj.setUserId(Integer.valueOf(RS.getString("orderdetails.userId")));
+			obj.setWorkspaceId(Integer.valueOf(RS.getString("orderdetails.workspaceId")));
+			obj.setActive(Integer.valueOf(RS.getString("orderdetails.active")));
+			obj.setSignUpId(Integer.valueOf(RS.getString("signup.id")));
+			obj.setFirstname(RS.getString("signup.Firstname"));
+			obj.setLastname(RS.getString("signup.Lastname"));
+			obj.setGender(RS.getString("signup.Gender"));
+			obj.setEmail(RS.getString("signup.Email"));
+			obj.setSUPassword(RS.getString("signup.Password"));
+			obj.setUsertype(RS.getString("signup.UserType"));
+			obj.setWorkspaceDetailsId(Integer.valueOf(RS.getString("workspacedetails.id")));
+			obj.setWorkspacename(RS.getString("workspacedetails.workspacename"));
+			obj.setLocation(RS.getString("workspacedetails.location"));
+			obj.setDescription(RS.getString("workspacedetails.description"));
+			obj.setFacilities(RS.getString("workspacedetails.facilities"));
+			obj.setTotalchairs(Integer.valueOf(RS.getString("workspacedetails.totalchairs")));
+			obj.setManagerid(Integer.valueOf(RS.getString("workspacedetails.managerid")));
+			obj.setUsername(RS.getString("workspacedetails.username"));
+			obj.setWSPassword(RS.getString("workspacedetails.password"));
+			list.add(obj);
+			}
+			return list;
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
+	@Override
+	public String setapproveRequest(String orderId) {
+		try{
+			query="update orderdetails set active=2 where id=? ";
+			PS=con.prepareStatement(query);
+			PS.setString(1, orderId);
+			int resp=PS.executeUpdate();
+			if(resp!=0){
+				return "Success";
+			}
+		}
+		catch(Exception e){
+			
+			System.out.println(e);
+		}
+		return null;
+	}
+	@Override
+	public String setrejectRequest(String orderId) {
+		try{
+			query="update orderdetails set active=0 where id=? ";
+			PS=con.prepareStatement(query);
+			PS.setString(1, orderId);
+			int resp=PS.executeUpdate();
+			
+		}
+		catch(Exception e){
+			
+			System.out.println(e);
+		}
+		return null;
+	}
+	@Override
+	public String setexpireRequest(String ordersId) {
+		
+		try{
+			query="update orderdetails set active=3 where workspaceId=? AND active=2 ";
+			PS=con.prepareStatement(query);
+			PS.setString(1, ordersId);
+			int resp=PS.executeUpdate();
+			if(resp!=0){
+				return "Success";
+			}
+		}
+		catch(Exception e){
+			
+			System.out.println(e);
+		}
+		
+		return null;
+	}
+	@Override
+	public String setrateMe(RatingBean obj) {
+		try{
+			query="insert into rating(userid,workspaceid,rating)values(?,?,?)";
+			PS=con.prepareStatement(query);
+			PS.setString(1,String.valueOf(obj.getUserid()));
+			PS.setString(2,String.valueOf(obj.getWorkspaceid()));
+			PS.setString(3,String.valueOf(obj.getRating()));
+int resp=PS.executeUpdate();
+			
+			if(resp!=0){
+				return "Success";
+			}
+			
+		}
+		
+		catch(Exception e){
+			
+			System.out.println(e);
+		}
+		return "failed";
+	}
+	@Override
+	public ArrayList<RatingBean> getAllReviews(String workspaceid) {
+		
+		ArrayList<RatingBean>list=new ArrayList();
+	try{
+		query="select * from rating where workspaceid=?";
+		PS=con.prepareStatement(query);
+		PS.setString(1, workspaceid);
+		ResultSet RS=PS.executeQuery();
+		
+		while(RS.next()){
+			
+			RatingBean obj=new RatingBean();
+			obj.setRating(Integer.valueOf(RS.getString("rating")));
+			list.add(obj);
+			
+		}
+		
+		return list;
+	}
+	catch(Exception e){
+		System.out.println(e);
+		
+	}
+		return list;
+	}
+	@Override
+	public String updateRating(String workspaceid, float avgrating) {
+		try{
+			query="update workspacedetails set currentrating=? where id=?";
+			PS=con.prepareStatement(query);
+			PS.setString(1, String.valueOf(avgrating));
+			PS.setString(2, workspaceid);
+int resp=PS.executeUpdate();
+			
+			if(resp!=0){
+				return "Success";
+			}
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+		return "failed";
+		
+	}
+	
+		
 	
 	
 	

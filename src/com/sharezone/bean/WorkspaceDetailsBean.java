@@ -11,6 +11,7 @@ public class WorkspaceDetailsBean {
 	private Integer managerid;;
 	private String username;
 	private String password;
+	private float currentrating;
 	public int getId() {
 		return id;
 	}
@@ -65,6 +66,12 @@ public class WorkspaceDetailsBean {
 	}
 	public void setManagerid(Integer managerid) {
 		this.managerid = managerid;
+	}
+	public float getCurrentrating() {
+		return currentrating;
+	}
+	public void setCurrentrating(float currentrating) {
+		this.currentrating = currentrating;
 	}
 	
 

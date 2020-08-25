@@ -317,7 +317,7 @@
         </div>
         <div id="c">
         <img id="d" src="images/SZ%20Logo1.jpg">
-            <a id="p" href="admin.html"> Back</a>
+            <a id="p" href="admin.jsp"> Back</a>
         </div>
         <div id="f">
         <h1 id="g">A convenient network of workspaces designed for collaboration and productivity</h1>
@@ -382,10 +382,10 @@
         </div>
         <div id="m">
         <h1 id="n">Join Our Team!</h1>
-            <p id="o">We’re looking for passionate, intelligent, and hardworking individuals to join our team. Think you'd be a great fit? Reach out at careers@sharezone.com and tell us why!</p>
+            <p id="o">We are looking for passionate, intelligent, and hardworking individuals to join our team. Think you'd be a great fit? Reach out at careers@sharezone.com and tell us why!</p>
         </div>
         <div class="n1">
-        <img class="o1" src="SZ%20Logo1.jpg">
+        <img class="o1" src="images/SZ%20Logo1.jpg">
             <h4 class="p1">MEMBERSHIP</h4>
             <h4 class="q1">COMPANY</h4>
             <h4 class="r1">BECOME A SHAREZONE PARTNER</h4>
@@ -412,10 +412,10 @@
             </ul>
          </div>
         <div class="v1">
-        <img class="w1" src="images/C:\Users\Jegan Bruso\Desktop\project\facebook.png">
-         <img class="x1" src="images/C:\Users\Jegan Bruso\Desktop\project\twitter.png">
-            <img class="y1" src="images/C:\Users\Jegan Bruso\Desktop\project\google-plus.png">
-            <img class="z1" src="images/C:\Users\Jegan Bruso\Desktop\project\linkedin.png">
+        <img class="w1" src="images/facebook.png">
+         <img class="x1" src="images/twitter.png">
+            <img class="y1" src="images/google-plus.png">
+            <img class="z1" src="images/linkedin.png">
         </div>
     </body>
 </html>
